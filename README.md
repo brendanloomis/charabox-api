@@ -1,4 +1,4 @@
-# Express Boilerplate!
+# Charabox API
 https://charabox.vercel.app/
 
 API for Charabox.
