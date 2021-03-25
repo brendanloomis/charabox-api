@@ -1,26 +1,58 @@
 # Express Boilerplate!
+https://charabox.vercel.app/
 
-This is a boilerplate project used for starting new projects!
+API for Charabox.
 
-## Set up
+## Client Repo 
+https://github.com/brendanloomis/charabox
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## API Endpoints
+### API URL
+https://charabox-api.herokuapp.com/api
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW_PROJECTS_NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+### GET
+* '/users/usernames' get all usernames
+* '/projects' Parameter: userId (number). Get projects for a specific user
+* '/characters' Parameter: projectId (number). Get characters for a specific project
+* '/notes' Parameter: characterId (number). Get notes for a specific character
 
-## Scripts
+### POST
+* '/users' adds a user
+* '/users/login' used for logging in
+* '/projects' adds a project
+* '/characters' adds a character
+* '/notes' adds a note
 
-Start the application  `npm start`
+### DELETE
+* '/projects/:project_id' deletes a project by changing it to inactive
+* '/characters/:character_id' deletes a character by changing it to inactive
+* '/notes/:note_id' deletes a note by changing it to inactive
 
-Start nodemon for the application `npm run dev`
+### PATCH
+* '/projects/:project_id' updates a project
+* '/characters/:character_id' updates a character
+* '/notes/:note_id' updates a note
 
-Run the tests `npm test`
+## Summary
 
-## Deploying
+![landing](images/landing.png)
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+Charabox is an application that can be used for creative writers to keep track of the character development for their projects. Users can add projects, characters to the projects, and notes for the characters. Users can also edit the information for their projects, characters, and notes. There is a demo account that can be used to try the app out (username: demo, password: pass123word).
+
+## Technology Used
+* Front-End
+    * React
+    * JavaScript
+    * HTML
+    * CSS
+    * Jest
+    * Deployed with Vercel
+
+* Back-End:
+    * Node
+    * Express
+    * PostgreSQL
+    * Mocha
+    * Chai
+    * Supertest
+    * Deployed with Heroku
