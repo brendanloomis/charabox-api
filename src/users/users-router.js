@@ -7,6 +7,7 @@ const UsersService = require('./users-service');
 const usersRouter = express.Router();
 const jsonParser = express.json();
 
+// serializes user information to protect from xss attacks, also doesn't include password
 const serializeUser = user => ({
     user_id: user.user_id,
     first_name: xss(user.first_name),
@@ -14,6 +15,7 @@ const serializeUser = user => ({
     username: xss(user.username)
 });
 
+// serializes username to protect from xss attacks
 const serializeUsername = user => ({
     username: xss(user.username)
 });
@@ -24,6 +26,7 @@ usersRouter
         const { first_name, last_name, username, password } = req.body;
         const newUser = { first_name, last_name, username, password };
 
+        // returns an error if requires fields aren't in request body
         for (const [key, value] of Object.entries(newUser)) {
             if (value == null) {
                 logger.error(`'${key}' is required`);
@@ -47,6 +50,7 @@ usersRouter
             .catch(next);
     });
 
+// route to use for logging in a user
 usersRouter
     .route('/login')
     .post(jsonParser, (req, res, next) => {
@@ -64,6 +68,7 @@ usersRouter
             username
         )
             .then(user => {
+                // return an error if user doesn't exist
                 if (!user) {
                     logger.error(`User not found.`);
                     return res.status(404).json({
@@ -71,6 +76,7 @@ usersRouter
                     });
                 }
 
+                // return an error if the password isn't correct
                 if (user.password !== password) {
                     logger.error(`Incorrect password`);
                     return res.status(401).json({
@@ -78,11 +84,13 @@ usersRouter
                     });
                 }
 
+                // return user info
                 return res.json(serializeUser(user))
             })
             .catch(next);
     });
 
+// route to get all usernames in users table
 usersRouter
     .route('/usernames')
     .get((req, res, next) => {

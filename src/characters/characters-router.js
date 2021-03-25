@@ -7,6 +7,7 @@ const CharactersService = require('./characters-service');
 const charactersRouter = express.Router();
 const jsonParser = express.json();
 
+// serializaes character information to protect from xss attacks
 const serializeCharacter = character => ({
     character_id: character.character_id,
     name: xss(character.name),
@@ -21,8 +22,10 @@ const serializeCharacter = character => ({
 charactersRouter
     .route('/')
     .get((req, res, next) => {
+        // get projectId from the query
         const { projectId } = req.query;
 
+        // return an error if the projectId isn't supplied
         if(!projectId) {
             logger.error(`projectId query is required`);
             return res.status(400).json({
@@ -32,6 +35,7 @@ charactersRouter
             });
         }
 
+        // return the characters based on the project id
         CharactersService.getCharacters(
             req.app.get('db'),
             projectId
@@ -45,6 +49,7 @@ charactersRouter
         const { name, age, occupation, role, interests, personality, project } = req.body;
         const newChar = { name, age, occupation, role, interests, personality, project };
 
+        // return an error if the required fields aren't in the request body
         for (const [key, value] of Object.entries(newChar)) {
             if (value == null) {
                 logger.error(`'${key}' is required`);
@@ -78,6 +83,7 @@ charactersRouter
             character_id
         )
             .then(char => {
+                // return a 404 error if the character doesn't exist
                 if (!char) {
                     logger.error(`Character with id ${character_id} not found.`);
                     return res.status(404)
@@ -111,6 +117,7 @@ charactersRouter
         const characterToUpdate = { name, age, occupation, role, interests, personality, project };
         const { character_id } = req.params;
 
+        // return an error if body doesn't contain any of the required fields
         const numberOfValues = Object.values(characterToUpdate).filter(Boolean).length;
         if (numberOfValues === 0) {
             logger.error(`Invalid update without required fields`);

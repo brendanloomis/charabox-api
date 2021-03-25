@@ -7,6 +7,7 @@ const NotesService = require('./notes-service');
 const notesRouter = express.Router();
 const jsonParser = express.json();
 
+// serializes note information to protect from xss attacks
 const serializeNote = note => ({
     note_id: note.note_id,
     note: xss(note.note),
@@ -16,8 +17,10 @@ const serializeNote = note => ({
 notesRouter
     .route('/')
     .get((req, res, next) => {
+        // get character id from query
         const { characterId } = req.query;
 
+        // return an error if the characterId isn't supplied
         if (!characterId) {
             logger.error(`characterId query is required`);
             return res.status(400).json({
@@ -27,6 +30,7 @@ notesRouter
             });
         }
 
+        // return the notes based on the character id
         NotesService.getNotes(
             req.app.get('db'),
             characterId
@@ -40,6 +44,7 @@ notesRouter
         const { note, character } = req.body;
         const newNote = { note, character };
 
+        // return an error if the required fields aren't in the request body
         for (const [key, value] of Object.entries(newNote)) {
             if (value == null) {
                 logger.error(`'${key}' is required`);
@@ -73,6 +78,7 @@ notesRouter
             note_id
         )
             .then(note => {
+                // return a 404 error if the note doesn't exist
                 if (!note) {
                     logger.error(`Note with id ${note_id} not found.`);
                     return res.status(404)
@@ -106,6 +112,7 @@ notesRouter
         const noteToUpdate = { note, character };
         const { note_id } = req.params;
 
+        // return an error if body doesn't contain any required fields
         const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length;
         if (numberOfValues === 0) {
             logger.error(`Invalid update without required fields`);

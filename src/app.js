@@ -20,6 +20,7 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
+// check if API key is correct
 app.use(function validateBearerToken(req, res, next) {
     const apiToken = process.env.API_TOKEN;
     const authToken = req.get('Authorization');
@@ -31,6 +32,7 @@ app.use(function validateBearerToken(req, res, next) {
     next();
 });
 
+// API endpoints
 app.use('/api/users', usersRouter);
 app.use('/api/projects', projectsRouter);
 app.use('/api/characters', charactersRouter);
@@ -40,6 +42,7 @@ app.get('/', (req, res) => {
     res.send('Hello, world!');
 });
 
+// error handler
 app.use(function errorHandler(error, req, res, next) {
     let response;
     if (NODE_ENV === 'production') {

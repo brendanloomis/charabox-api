@@ -25,6 +25,7 @@ const NotesService = {
             .first();
     },
 
+    // delete by changing active to 0, don't actually fully delete
     deleteNote(knex, note_id) {
         return knex('notes')
             .where({ note_id })

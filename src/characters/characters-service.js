@@ -25,6 +25,7 @@ const CharactersService = {
             .first();
     },
 
+    // delete by changing active to 0, don't actually fully delete
     deleteCharacter(knex, character_id) {
         return knex('characters')
             .where({ character_id })

@@ -25,6 +25,7 @@ const ProjectsService = {
             .first();
     },
 
+    // delete by changing active to 0, don't actually fully delete
     deleteProject(knex, project_id) {
         return knex('projects')
             .where({ project_id })

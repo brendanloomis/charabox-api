@@ -7,6 +7,7 @@ const xss = require('xss');
 const projectsRouter = express.Router();
 const jsonParser = express.json();
 
+// serializes project information to protect from xss attacks
 const serializeProject = project => ({
     project_id: project.project_id,
     project_name: xss(project.project_name),
@@ -18,8 +19,10 @@ const serializeProject = project => ({
 projectsRouter
     .route('/')
     .get((req, res, next) => {
+        // get user id from the query
         const { userId } = req.query;
 
+        // return an error if the userId isn't supplied
         if(!userId) {
             logger.error(`userId query is required`);
             return res.status(400).json({
@@ -29,6 +32,7 @@ projectsRouter
             });
         }
 
+        // return the projects based on the user id
         ProjectsService.getProjects(
             req.app.get('db'),
             userId
@@ -42,6 +46,7 @@ projectsRouter
         const { project_name, project_type, project_summary, user_id } = req.body;
         const newProject = { project_name, project_type, project_summary, user_id };
 
+        // return an error if the required fields aren't in the request body
         for (const [key, value] of Object.entries(newProject)) {
             if (value == null) {
                 logger.error(`'${key}' is required`);
@@ -75,6 +80,7 @@ projectsRouter
             project_id
         )
             .then(project => {
+                // return a 404 error if the project doesn't exist
                 if (!project) {
                     logger.error(`Project with id ${project_id} not found.`);
                     return res.status(404).json({
@@ -107,6 +113,7 @@ projectsRouter
         const projectToUpdate = { project_name, project_type, project_summary };
         const { project_id } = req.params;
 
+        // return an error if the body doesn't contain any required fields
         const numberOfValues = Object.values(projectToUpdate).filter(Boolean).length;
         if (numberOfValues === 0) {
             logger.error(`Invalid update without required fields`);
