@@ -1,5 +1,3 @@
-bashCopy code
-
 FROM node:18
 
 WORKDIR /src
