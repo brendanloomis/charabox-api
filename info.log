@@ -483,3 +483,61 @@
 {"message":"Project with id 4 deleted.","level":"info"}
 {"message":"Note with id 6 created.","level":"info"}
 {"message":"Note with id 6 deleted.","level":"info"}
+{"message":"Unauthorized request to path /api/characters","level":"error"}
+{"message":"Unauthorized request to path /api/characters","level":"error"}
+{"message":"Unauthorized request to path /api/characters/2","level":"error"}
+{"message":"Unauthorized request to path /api/characters/2","level":"error"}
+{"message":"Unauthorized request to path /api/characters/2","level":"error"}
+{"message":"Character with id 123456 not found.","level":"error"}
+{"message":"Character with id 123456 not found.","level":"error"}
+{"message":"Character with id 1 deleted.","level":"info"}
+{"message":"'name' is required","level":"error"}
+{"message":"'age' is required","level":"error"}
+{"message":"'occupation' is required","level":"error"}
+{"message":"'role' is required","level":"error"}
+{"message":"'interests' is required","level":"error"}
+{"message":"'personality' is required","level":"error"}
+{"message":"Character with id 9 created.","level":"info"}
+{"message":"Character with id 10 created.","level":"info"}
+{"message":"Character with id 123456 not found.","level":"error"}
+{"message":"Unauthorized request to path /api/notes","level":"error"}
+{"message":"Unauthorized request to path /api/notes","level":"error"}
+{"message":"Unauthorized request to path /api/notes/2","level":"error"}
+{"message":"Unauthorized request to path /api/notes/2","level":"error"}
+{"message":"Unauthorized request to path /api/notes/2","level":"error"}
+{"message":"Note with id 123456 not found.","level":"error"}
+{"message":"Note with id 123456 not found.","level":"error"}
+{"message":"Note with id 1 deleted.","level":"info"}
+{"message":"'note' is required","level":"error"}
+{"message":"'character' is required","level":"error"}
+{"message":"Note with id 9 created.","level":"info"}
+{"message":"Note with id 10 created.","level":"info"}
+{"message":"Note with id 123456 not found.","level":"error"}
+{"message":"Unauthorized request to path /api/projects","level":"error"}
+{"message":"Unauthorized request to path /api/projects","level":"error"}
+{"message":"Unauthorized request to path /api/projects/1","level":"error"}
+{"message":"Unauthorized request to path /api/projects/1","level":"error"}
+{"message":"Unauthorized request to path /api/projects/1","level":"error"}
+{"message":"Project with id 123456 not found.","level":"error"}
+{"message":"Project with id 123456 not found.","level":"error"}
+{"message":"Project with id 1 deleted.","level":"info"}
+{"message":"'project_name' is required","level":"error"}
+{"message":"'project_type' is required","level":"error"}
+{"message":"'project_summary' is required","level":"error"}
+{"message":"'user_id' is required","level":"error"}
+{"message":"Project with id 11 created.","level":"info"}
+{"message":"Project with id 12 created.","level":"info"}
+{"message":"Project with id 123456 not found.","level":"error"}
+{"message":"Unauthorized request to path /api/users","level":"error"}
+{"message":"Unauthorized request to path /api/users/login","level":"error"}
+{"message":"'first_name' is required","level":"error"}
+{"message":"'last_name' is required","level":"error"}
+{"message":"'username' is required","level":"error"}
+{"message":"'password' is required","level":"error"}
+{"message":"User with id 11 created.","level":"info"}
+{"message":"User with id 12 created.","level":"info"}
+{"message":"User not found.","level":"error"}
+{"message":"'uername' and 'password' are required","level":"error"}
+{"message":"'uername' and 'password' are required","level":"error"}
+{"message":"Incorrect password","level":"error"}
+{"message":"Unauthorized request to path /api/users/usernames","level":"error"}
