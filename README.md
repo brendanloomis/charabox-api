@@ -55,4 +55,4 @@ Charabox is an application that can be used for creative writers to keep track o
     * Mocha
     * Chai
     * Supertest
-    * Deployed with Heroku
+    * Deployed with Render
