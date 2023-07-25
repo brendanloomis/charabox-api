@@ -541,3 +541,4 @@
 {"message":"'uername' and 'password' are required","level":"error"}
 {"message":"Incorrect password","level":"error"}
 {"message":"Unauthorized request to path /api/users/usernames","level":"error"}
+{"level":"error","message":"Unauthorized request to path /api/users/usernames"}
